@@ -1,0 +1,127 @@
+# Medical Laboratory Management System
+
+A comprehensive medical laboratory management system with multiple deployment options:
+- Web application (Flask) with Docker support
+- Desktop application for Windows
+- Desktop application for macOS
+
+## Features
+
+- Patient management (registration, information, history)
+- Test management (test types, requests, tracking)
+- Medical report generation and management
+- Billing and invoicing system
+- User management with role-based access control
+- Inventory management
+- Statistics and reporting dashboard
+- Multi-language support
+- Data encryption and security
+- Barcode generation for samples
+- PDF report generation
+
+## Quick Start
+
+### Docker Deployment (Recommended for Web Version)
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd medical-lab-system
+
+# Build and run with Docker Compose
+docker-compose up --build
+
+# Access the application at http://localhost:5000
+```
+
+### Manual Deployment
+
+#### Web Version
+```bash
+cd final_distribution/web_version
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+```
+
+Then open http://localhost:5000 in your browser.
+
+#### Desktop Versions
+The desktop versions need to be built on their respective platforms:
+
+##### Windows
+1. Copy the project to a Windows machine
+2. Run: `python build_executables/build_windows.py`
+3. Find the executable in `final_distribution/windows_desktop/`
+
+##### macOS
+1. Copy the project to a macOS machine
+2. Run: `python build_executables/build_macos.py`
+3. Find the app bundle in `final_distribution/macos_desktop/`
+
+## Default Credentials
+- Username: admin
+- Password: admin123
+
+## Project Structure
+
+```
+medical-lab-system/
+├── Dockerfile                  # Docker configuration for web app
+├── docker-compose.yml         # Multi-container Docker setup
+├── init.sql                   # Database initialization
+├── medical_lab_system/        # Desktop application source code
+├── final_distribution/        # Final distribution package
+│   ├── web_version/           # Ready-to-deploy web app
+│   ├── windows_desktop/       # Windows executable (build on Windows)
+│   ├── macos_desktop/         # macOS app bundle (build on macOS)
+│   └── build_executables/     # Build scripts for desktop versions
+├── build_executables/         # Build scripts
+└── README.md                  # This file
+```
+
+## Development
+
+### Web Application Development
+The web version is built with Flask and can be modified by editing files in `final_distribution/web_version/`.
+
+### Desktop Application Development
+The desktop version is built with Tkinter and can be modified by editing files in `medical_lab_system/`.
+
+## Building Desktop Applications
+
+### Prerequisites
+- Python 3.7+
+- PyInstaller (`pip install pyinstaller`)
+
+### Windows
+```bash
+python build_executables/build_windows.py
+```
+
+### macOS
+```bash
+python build_executables/build_macos.py
+```
+
+## Docker Deployment
+
+### Build and Run
+```bash
+docker-compose up --build
+```
+
+### Run in Background
+```bash
+docker-compose up -d --build
+```
+
+### Stop Services
+```bash
+docker-compose down
+```
+
+## License
+
+This is a proprietary medical laboratory management system. All rights reserved.

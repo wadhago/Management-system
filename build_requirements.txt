@@ -1,0 +1,13 @@
+
+# Simplified requirements for building executables
+tkinter
+sqlite3
+hashlib
+uuid
+datetime
+typing
+Pillow
+python-barcode
+cryptography
+PyPDF2
+python-docx

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./final_distribution/web_version:/app
+      - ./medical_lab.db:/app/medical_lab.db
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: medical_lab
+      POSTGRES_USER: lab_user
+      POSTGRES_PASSWORD: lab_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:
