@@ -1,0 +1,41 @@
+name: Build Web & Desktop Apps
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build_web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install web dependencies
+        run: |
+          pip install -r web_app/requirements.txt
+      - name: Test Web App
+        run: |
+          python -c "import flask; print('Flask OK ✅')"
+
+  build_desktop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install desktop dependencies
+        run: |
+          pip install -r desktop_app/requirements.txt
+      - name: Build Windows exe
+        run: |
+          pip install pyinstaller
+          pyinstaller --onefile desktop_app/main.py --name DesktopAppWindows
+      - name: Build Mac app
+        run: |
+          pip install pyinstaller
+          pyinstaller --onefile --windowed --name DesktopAppMac desktop_app/main.py
